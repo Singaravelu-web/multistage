@@ -21,4 +21,4 @@ jobs:
     needs: [deploy-staging]
     runs-on: ubuntu-latest
     steps:
-      - run: echo Deploy to production using ${{ secrets.mysecret-prod }}
+      - run: echo Deploy to production using ${{ secrets.MYSECRET_PROD }}
