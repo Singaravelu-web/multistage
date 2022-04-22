@@ -12,7 +12,7 @@ jobs:
       name: Staging
     runs-on: ubuntu-latest
     steps:
-      - run: echo Deploy to staging using ${{ secrets.mysecret-stag }}
+      - run: echo Deploy to staging using ${{ secrets.MYSECRET_STAG }}
         
   deploy-production:
     name: Deploy to production
