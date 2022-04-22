@@ -13,12 +13,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo Deploy to staging using ${{ secrets.MYSECRET_STAG }}
+      
+  deploy-QA:
+    name: Deploy to QA
+    environment:
+      name: QA
+    needs: [deploy-staging]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo Deploy to QA using ${{ secrets.MYSECRET_QA }}      
         
   deploy-production:
     name: Deploy to production
     environment:
       name: Production
-    needs: [deploy-staging]
+    needs: [deploy-QA]
     runs-on: ubuntu-latest
     steps:
       - run: echo Deploy to production using ${{ secrets.MYSECRET_PROD }}
