@@ -1,0 +1,33 @@
+# This workflow will build and push an application to a Azure Kubernetes Service (AKS) cluster when you push your code
+
+on: workflow_dispatch
+  # Triggers the workflow on push or pull request   events but only for the main branch
+  #push:
+  #  branches: [ bb2-aks-development ]  
+
+env:
+ DEV_AZURE_CONTAINER_REGISTRY: seagwamaksdevacr
+ APP_NAME: bb2app
+ DEV_RESOURCE_GROUP: seagwam-aks-dev-rg
+ DEV_CLUSTER_NAME: seagwam-dev-aks
+ DEV_NAMESPACE: ns-gwam-aw-ifunds-dev
+ DEV_SECRET: acr-secret
+ 
+ UAT_AZURE_CONTAINER_REGISTRY: seagwamaksdevacr
+ UAT_RESOURCE_GROUP: seagwam-aks-uat-rg
+ UAT_CLUSTER_NAME: seagwam-uat-aks
+ UAT_NAMESPACE: ns-gwam-aw-ifunds-uat
+ UAT_SECRET: acr-secret
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    
+    # Check out current Git Repo
+    - name: Checkout Git Repo
+      uses: actions/checkout@v2
+        
+    # Get shared repo
+    - name: Checkout Shared Module
+      uses: actions/checkout@v2
